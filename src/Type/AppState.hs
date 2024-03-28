@@ -48,11 +48,12 @@ initialState defaultFields = do
   let defaultWidth = MaxWidth 1
   initialLogsView <- initLogsView (maybe [] (map (`SelectedField` defaultWidth)) defaultFields)
   let fields = maybe initialFields (Map.fromList . map (,FieldState{isSelected = True, maxWidth = defaultWidth})) defaultFields
+  eml <- emptyLogWidget
   pure
     AppState
       { dialogWidget = Nothing
       , logsView = initialLogsView
-      , logView = emptyLogWidget
+      , logView = eml
       , statusBar =
           StatusBarWidget
             { totalLines = 0

@@ -70,9 +70,8 @@ logViewWidgetHandleEvent logViewPosition widgetState callbacks = \case
           Nothing -> pure ()
           Just Log{..} -> copy value
     LogViewWidgetCopyMethod -> do
-      widgetState . #copyMethod %= \case
-        Osc52 -> Native
-        Native -> Osc52
+      toggler <- use $ widgetState . #copyMethodToggler
+      widgetState . #copyMethod %= toggler
       B.invalidateCacheEntry (mkName LogViewWidgetItself)
     _ -> pure ()
   Key k mods -> do

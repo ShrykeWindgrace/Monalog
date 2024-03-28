@@ -71,6 +71,7 @@ library
     , cassava
     , conduit
     , containers
+    , directory
     , effectful
     , filepath
     , fuzzy
